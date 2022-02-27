@@ -1,32 +1,47 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div>
+    <!-- <test></test> -->
+    Hello Vue
+    <!-- 路由容器 -->
+    <!-- 一般直接使用vuex state用法 -->
+    <!-- <tabbar v-show="$store.state.isTabbarShow"></tabbar> -->
+    <!-- computed + mapState 寫法 -->
+    <tabbar v-show="isTabbarShow"></tabbar>
+    <router-view></router-view>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<script>
+import { mapState } from 'vuex'
+import tabbar from './components/Tabbar.vue'
+// import test from './components/Test.vue'
+// 大括弧等價於之前定義組件中Vue.component('',{})的第二個參數
+export default {
+  data () {
+    return {}
+  },
+  methods: {},
+  //  區域組件建構方式
+  components: {
+    // test: test
+    tabbar
+  },
+  computed: {
+    ...mapState(['isTabbarShow'])
   }
+}
+</script>
+
+<style lang="scss">
+*{
+  margin:0;
+  padding:0;
+  width:100%;
+}
+html{
+  height:100%;
+}
+li{
+  list-style: none;
 }
 </style>
