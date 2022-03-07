@@ -45,7 +45,7 @@
       </div>
 
       <div class="update" v-if="activeNumber === 2">
-        <ul v-if="list">
+        <ul v-if="open">
           <li v-for="(data, index) in list" :key="index">
             <input type="radio" :value="index" v-model="picked" />
             <span
@@ -53,7 +53,17 @@
               {{ data.sex === "male" ? "男" : "女" }}</span
             >
           </li>
+          <button @click="handleModifyClick">變更</button>
         </ul>
+        <div v-else>
+          <div><span>姓名</span><input v-model.trim="chosename" /></div>
+          <div><span>年齡</span><input v-model="choseage" type="number" /></div>
+          <div>
+            <input v-model="chosesex" type="radio" value="male" /><span>男</span>
+            <input v-model="chosesex" type="radio" value="female" /><span>女</span>
+          </div>
+          <div><button @click="handleModifySend">變更</button></div>
+        </div>
       </div>
     </div>
   </div>
@@ -74,7 +84,11 @@ export default {
         { name: 'ddd', age: 44, sex: 'male' }
       ],
       checkgroup: [],
-      picked: ''
+      picked: null,
+      open: true,
+      chosename: '',
+      choseage: '',
+      chosesex: ''
     }
   },
   methods: {
@@ -98,8 +112,32 @@ export default {
       for (let i = checkgroup.length - 1; i >= 0; i--) {
         list.splice(checkgroup[i], 1)
       }
-      console.log(list)
+      this.checkgroup = []
       this.list = list
+    },
+    handleModifyClick () {
+      console.log(this.picked)
+      if (this.picked !== null) {
+        this.open = false
+        const choseUser = this.list[this.picked]
+        this.chosename = choseUser.name
+        this.choseage = choseUser.age
+        this.chosesex = choseUser.sex
+      } else {
+        alert('選擇修改對象')
+      }
+    },
+    handleModifySend () {
+      this.list[this.picked] = {
+        name: this.chosename,
+        age: this.choseage,
+        sex: this.chosesex
+      }
+      this.open = true
+      this.chosename = ''
+      this.chosesex = ''
+      this.choseage = ''
+      this.picked = ''
     }
   }
 }
