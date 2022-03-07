@@ -8,6 +8,7 @@
             <router-link to="/film" tag="li" activeClass="myactive">Film</router-link>
             <router-link to="/sinema" tag="li" activeClass="myactive">Senima</router-link>
             <router-link to="/test" tag="li" activeClass="myactive">Test</router-link>
+             <router-link to="/CRUD" tag="li" activeClass="myactive">CRUD</router-link>
         </ul>
     </nav>
 </template>

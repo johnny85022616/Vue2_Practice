@@ -5,6 +5,7 @@ import Center from '../views/Center.vue'
 import Sinema from '../views/Sinema.vue'
 import Login from '../views/Login.vue'
 import Test from '../views/Test.vue'
+import Crud from '../views/CRUD.vue'
 import Commingsoon from '../views/Film/Commingsoon'
 import Nowplaying from '../views/Film/Nowplaying'
 import Detail from '../views/Detail.vue'
@@ -61,6 +62,10 @@ const routes = [
   {
     path: '/test',
     component: Test
+  },
+  {
+    path: '/CRUD',
+    component: Crud
   },
   {
     path: '*',
